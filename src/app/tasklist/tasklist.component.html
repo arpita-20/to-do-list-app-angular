@@ -1,0 +1,36 @@
+<div style="text-align: center;">
+    <input type="text" maxlength="5" placeholder="Enter Task Title" style="font-size: 20px ;" #task>
+<br>
+<br>
+
+<input type="text" style=" height: 70px;width: 300px;font-size: 25px;" placeholder="Description" #desc>
+<br>
+<br>
+<br>
+
+<button style="padding: 15px 32px; background-color:azure;" (click)="addTask(task.value,desc.value)">Add</button>
+
+</div>
+
+<ul *ngFor="let item of list ">
+<li style=" height: 50px;width: 250px;font-size: 20px;">{{item.name}}<button style="padding: 10px 20px; background-color:azure;" (click)="removeTask(item.id)">Remove</button><button style="padding: 10px 20px; background-color:azure;" (click)="viewDetails(item.id)">View Desc</button></li>
+</ul>
+<!-- <nav>
+  <a router-link="/removed">Removed List</a>
+</nav>
+
+<router-outlet></router-outlet> -->
+
+
+<!-- <input id="item-desc" [(ngModel)]="item.desc" placeholder="Description"> -->
+
+<!-- <div style="text-align: center;">
+    <input type="text" placeholder="Enter Task Title" #task>
+<br>
+<button (click)="addTask(task.value)">Add</button>
+
+</div>
+<br>
+<ul *ngFor="let item of list ">
+    <li>{{item.name}} <button (click)="removeTask(item.id)">Remove</button> </li>
+</ul> -->
