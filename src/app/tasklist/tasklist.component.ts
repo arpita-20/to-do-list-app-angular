@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
+import { isNgContent } from '@angular/compiler';
+import { Component, OnInit, Renderer2 , ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-tasklist',
@@ -7,29 +9,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasklistComponent implements OnInit {
 
-  constructor() { }
+  constructor(private renderer:Renderer2, private el: ElementRef ) { }
 
   ngOnInit(): void {
   }
+
+
   list:any[]=[];
+  
   addTask(item:string,desc:string)
   {
-    //window.alert(item);
+    
     this.list.push({id:this.list.length,name:item,description:desc});
     console.warn(this.list);
   }
   removeTask(id:number)
   {
-   // console.warn(id);
+  
    this.list=this.list.filter(item=>item.id!=id)
   }
-  viewDetails(id:number)
-  {
-    //console.warn(id);
-   window.alert(this.list[id].description);
-   //this.list=this.list[id].description;
-  }
 
+  
+  oldItemData = {
+    name : 'name',
+    description:'description'
+  } 
 
+editModeToggle =false;
+  
+edit(itemName:any,itemDesc:any) {
+  this.editModeToggle = true;
+  this.oldItemData.name= itemName;
+  this.oldItemData.description=itemDesc;
+
+   console.warn( this.oldItemData.name);
+  console.warn( this.oldItemData.description);
+ }
+
+saveChanges(item: any) {
+
+  this.editModeToggle = false;
+  
+  
+}
+
+cancelEdit(itemList:any) {
+  this.editModeToggle = false;
+  itemList.name= this.oldItemData.name;
+  itemList.description=this.oldItemData.description;
+ 
+}
+ 
 
 }

@@ -1,36 +1,87 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    table, th , td ,tr {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: center;
+      background-color: white;
+     
+    }
+    .btn {
+  background-color:Blue;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.btn:hover {
+  background-color: RoyalBlue;
+}
+    
+</style>
+
 <div style="text-align: center;">
-    <input type="text" maxlength="5" placeholder="Enter Task Title" style="font-size: 20px ;" #task>
+    <input type="text"  placeholder="Enter Task Title" style="font-size: 20px ;"  #task>
 <br>
 <br>
 
-<input type="text" style=" height: 70px;width: 300px;font-size: 25px;" placeholder="Description" #desc>
+<input type="text" style=" height: 70px;width: 300px;font-size: 25px;"  placeholder="Description" #desc>
 <br>
-<br>
-<br>
+
 
 <button style="padding: 15px 32px; background-color:azure;" (click)="addTask(task.value,desc.value)">Add</button>
 
 </div>
 
-<ul *ngFor="let item of list ">
-<li style=" height: 50px;width: 250px;font-size: 20px;">{{item.name}}<button style="padding: 10px 20px; background-color:azure;" (click)="removeTask(item.id)">Remove</button><button style="padding: 10px 20px; background-color:azure;" (click)="viewDetails(item.id)">View Desc</button></li>
-</ul>
-<!-- <nav>
-  <a router-link="/removed">Removed List</a>
-</nav>
-
-<router-outlet></router-outlet> -->
-
-
-<!-- <input id="item-desc" [(ngModel)]="item.desc" placeholder="Description"> -->
-
-<!-- <div style="text-align: center;">
-    <input type="text" placeholder="Enter Task Title" #task>
 <br>
-<button (click)="addTask(task.value)">Add</button>
+<div id="textboxes"></div>
+<table  style="border:1px solid black;margin-left:auto;margin-right:auto;">
+    
+    <th>Title</th>
+    <th>Description</th>
+    <th>Action</th>
+    
+ <tr *ngFor="let item of list,index as i ">
+    
+        
+        
+    
 
-</div>
-<br>
-<ul *ngFor="let item of list ">
-    <li>{{item.name}} <button (click)="removeTask(item.id)">Remove</button> </li>
-</ul> -->
+<td>
+    
+    <input style=" height: 50px;width: 250px;font-size: 20px;" type="text"  [(ngModel)]="item.name" [disabled]="!editModeToggle"/>
+  </td>
+  <td>
+    <input style=" height: 50px;width: 250px;font-size: 20px;" type="text" [(ngModel)]="item.description" [disabled]="!editModeToggle"/>
+  </td>
+
+<td>
+    
+    <button class="btn" (click)="removeTask(item.id)"><i class="fa fa-trash"></i></button>
+   
+         
+         
+         <div *ngIf="editModeToggle">
+         <button class="btn" (click)="saveChanges(item)">Save</button>
+       </div>
+     
+       <div *ngIf="editModeToggle">
+         <button class="btn" (click)="cancelEdit(item)">Cancel</button>
+       </div>
+     
+       <div *ngIf="!editModeToggle">
+         <button class="btn" (click)="edit(item.name,item.description)"><i class="fa fa-edit"></i></button>
+       </div>
+     
+          
+        
+</td>
+ </tr>
+ </table>
+
+
+
+
