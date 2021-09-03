@@ -1,4 +1,9 @@
-<app-top></app-top>
+<app-top [total]="total"></app-top>
 <br><br>
-<app-tasklist></app-tasklist>
+<!-- <app-tasklist
+        (newItemEvent)="recieve($event)"
+        
+      > 
+</app-tasklist> -->
+<router-outlet></router-outlet>
 

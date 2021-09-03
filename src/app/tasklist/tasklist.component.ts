@@ -1,6 +1,8 @@
 
 import { isNgContent } from '@angular/compiler';
-import { Component, OnInit, Renderer2 , ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2 , ElementRef,Input, Output, EventEmitter } from '@angular/core';
+import {SharedService} from "../shared/shared.service";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-tasklist',
@@ -9,9 +11,10 @@ import { Component, OnInit, Renderer2 , ElementRef } from '@angular/core';
 })
 export class TasklistComponent implements OnInit {
 
-  constructor(private renderer:Renderer2, private el: ElementRef ) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    
   }
 
 
@@ -22,6 +25,8 @@ export class TasklistComponent implements OnInit {
     
     this.list.push({id:this.list.length,name:item,description:desc});
     console.warn(this.list);
+    console.warn(this.list.length);
+    
   }
   removeTask(id:number)
   {
@@ -59,6 +64,29 @@ cancelEdit(itemList:any) {
   itemList.description=this.oldItemData.description;
  
 }
+
+
+@Output() newItemEvent = new EventEmitter<any>();
+
+   totalRows() {
+     console.warn(this.list.length);
+    return this.newItemEvent.emit(this.list.length);
+  }
+  routerName:any;
+  routerDesc:any;
+  paramPass(item3:any)
+  {
+    this.routerName=item3.name;
+    this.routerDesc=item3.description;
+    console.log("title"+this.routerName);
+    console.log("desc"+this.routerDesc);
+    
+    
+    this.router.navigate( ['/home'], {queryParams: { n:this.routerName,d:this.routerDesc}});
+  
+   }
+   
+  
  
 
 }

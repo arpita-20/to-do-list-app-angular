@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopComponent } from './top/top.component';
+import { HomeComponent } from './home/home.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TopComponent } from './top/top.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopComponent,
-    TasklistComponent
+    HomeComponent,
+    TasklistComponent,
+    TopComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
