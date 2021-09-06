@@ -10,15 +10,31 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./tasklist.component.css']
 })
 export class TasklistComponent implements OnInit {
+  
 
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    document.cookie="a1=low";
+document.cookie="a2=low";
+localStorage.setItem('name','Arpita');
+console.log(localStorage.getItem('name'));
+
+localStorage.setItem('name1','Mitthi');
+console.log(localStorage.getItem('name1'));
+
+localStorage.setItem('name1','Sapna');
+console.log(localStorage.getItem('name1'));
+console.log(document.cookie);
+
+sessionStorage.setItem('name2','Gupta')
+sessionStorage.getItem('name2');
     
   }
 
 
   list:any[]=[];
+  
   
   addTask(item:string,desc:string)
   {
